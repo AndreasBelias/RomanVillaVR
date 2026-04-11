@@ -34,11 +34,11 @@ The following images demonstrate the villa's lighting, architecture, and scanned
 
 | Atrium View | Marcus Agrippa Bust |
 | :--- | :--- |
-| ![Atrium](./VillaImages/atrium.jpg) | ![Agrippa](./VillaImages/agrippa.jpg) |
+| ![Atrium](./VillaImages/Atrium.png) | ![Agrippa](./VillaImages/Agrippa.png) |
 
 | Items | Peristylium |
 | :--- | :--- |
-| ![Items](./VillaImages/sunset.jpg) | ![Peristylium](./VillaImages/doors.jpg) |
+| ![Items](./VillaImages/Items.png) | ![Peristylium](./VillaImages/Peristylium.png) |
 
 ## Built With
 * **Vizard VR Toolkit**
