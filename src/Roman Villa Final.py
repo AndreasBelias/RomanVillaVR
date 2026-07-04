@@ -1,3 +1,4 @@
+import os
 import viz
 import vizfx
 import vizact
@@ -7,16 +8,63 @@ import tools.grabber
 import random
 import math
 
+# Project paths
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_DIR = os.path.dirname(SCRIPT_DIR)
+ASSETS_DIR = os.path.join(PROJECT_DIR, 'exported')
+
+
+def script_path(filename):
+    """Return an absolute path to a file stored beside this script."""
+    return os.path.join(SCRIPT_DIR, filename)
+
+
+def asset_path(filename):
+    """Return an absolute path to a runtime asset in exported/."""
+    return os.path.join(ASSETS_DIR, filename)
+
+
+def require_file(path):
+    """Return path if it exists, otherwise raise a clear error."""
+    if not os.path.isfile(path):
+        raise FileNotFoundError(
+            "Required project file was not found: {}".format(path)
+        )
+    return path
+
+
+def optional_asset(filename):
+    """Return a runtime filename when available, otherwise print a warning."""
+    path = asset_path(filename)
+    if not os.path.isfile(path):
+        print("Optional asset not found:", path)
+        return None
+    return filename
+
+
+# Vizard resolves GLTF dependencies, cubemap faces, textures, and audio
+# relative to the current working directory. Use exported/ as the runtime
+# working directory while keeping configuration files addressed absolutely.
+if not os.path.isdir(ASSETS_DIR):
+    raise FileNotFoundError(
+        "Runtime assets directory was not found: {}".format(ASSETS_DIR)
+    )
+
+os.chdir(ASSETS_DIR)
+print("Runtime assets directory:", ASSETS_DIR)
+
+
 # Basic setup
 
 viz.go()
 
 # PC mode
-vizconnect.go('vizconnect_config.py')
+vizconnect.go(require_file(script_path('vizconnect_config.py')))
 movement_tracker = vizconnect.getTracker('mouse_and_keyboard_walking').getNode3d()
 
 # VR mode
-# vizconnect.go('headset_config.py')
+# vizconnect.go(require_file(script_path('headset_config.py')))
 # movement_tracker = vizconnect.getTracker('head_tracker').getNode3d()
 
 viz.MainView.collision(viz.ON)
@@ -98,6 +146,7 @@ def teleportToGroundFloor():
 
 # Environment
 
+# Vizard resolves the six cubemap faces from the sunset base name.
 env = viz.addEnvironmentMap('sunset.jpg')
 sky = viz.add('skydome.dlc')
 sky.texture(env)
@@ -112,16 +161,24 @@ vizact.onkeydown('j', teleportToGroundFloor)
 # Positional sound
 
 sound_node = viz.addGroup(pos=[0, 0, 0])
-center_sound = sound_node.playsound('bird sound.wav', viz.LOOP)
-center_sound.minmax(4, 5)
+bird_sound_path = optional_asset('bird sound.wav')
+center_sound = None
+
+if bird_sound_path:
+    center_sound = sound_node.playsound(bird_sound_path, viz.LOOP)
+    center_sound.minmax(4, 5)
 
 # Keep bird sound attached to the shifted villa world.
 registerMovableWorldNode(sound_node)
 
 # Footstep sound
 
-footstep_sound = viz.addAudio('footsteps.wav', loop=viz.ON)
-footstep_sound.volume(0.8)
+footsteps_path = optional_asset('footsteps.wav')
+footstep_sound = None
+
+if footsteps_path:
+    footstep_sound = viz.addAudio(footsteps_path, loop=viz.ON)
+    footstep_sound.volume(0.8)
 
 last_position = [0, 0, 0]
 is_playing = False
@@ -129,6 +186,9 @@ MOVEMENT_THRESHOLD = 0.001
 
 def checkFootsteps():
     global last_position, is_playing
+
+    if footstep_sound is None:
+        return
 
     current_pos = movement_tracker.getPosition()
 
@@ -338,9 +398,11 @@ for item_name in item_names:
     items.append(item)
 
     if item_name in harp_names:
-        harps.append(item)
-        harp_sounds[item] = viz.addAudio('Harp Sound.wav')
-        harp_sounds[item].stop()
+        harp_path = optional_asset('Harp Sound.wav')
+        if harp_path:
+            harps.append(item)
+            harp_sounds[item] = viz.addAudio(harp_path)
+            harp_sounds[item].stop()
 
     description = makeItemDescription(item_name)
     item_text_objects[item] = createItemText(description)
@@ -529,7 +591,7 @@ vizact.onupdate(viz.PRIORITY_INPUT + 1, updateDoorDrag)
 def onGrab(e):
     grabbed_object = e.grabbed
 
-    if grabbed_object in harps:
+    if grabbed_object in harp_sounds:
         harp_sounds[grabbed_object].play()
 
     if grabbed_object not in item_text_objects:
@@ -561,7 +623,7 @@ def onGrab(e):
 def onRelease(e):
     released_object = e.released
 
-    if released_object in harps:
+    if released_object in harp_sounds:
         harp_sounds[released_object].stop()
 
     if released_object not in item_text_objects:
