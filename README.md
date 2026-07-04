@@ -1,96 +1,94 @@
-# RomanVillaVR
+# Roman Villa VR
 
-**RomanVillaVR** is an immersive virtual reality reconstruction of an ancient Roman *domus*. Developed using the **Vizard VR Toolkit**, **Python**, and **Autodesk 3ds Max**, the project combines historical research, 3D scanning, interactive VR elements, lighting design, and 3D asset optimization to create a historically informed ancient environment.
+An interactive virtual reality reconstruction of a Roman villa, developed with WorldViz Vizard and Autodesk 3ds Max.
 
-## Project Overview
+The project was designed primarily for the HTC Vive through SteamVR, but it can also run without a VR headset in desktop mode using a keyboard and mouse.
 
-The simulation allows users to explore a reconstructed Roman residence in an immersive virtual environment.
+## Preview
 
-The project focuses on:
+<p align="center">
+  <img src="media/Atrium.png" width="48%" alt="Roman villa atrium">
+  <img src="media/Peristylium.png" width="48%" alt="Roman villa peristyle">
+</p>
 
-- Detailed 3D asset integration
-- Atmospheric lighting
-- Interactive elements
-- Historical architectural research
-- Performance-aware scene optimization
-- Integration of 3D-scanned artifacts
+<p align="center">
+  <img src="media/Items.png" width="48%" alt="Interactive Roman artifacts">
+  <img src="media/Agrippa.png" width="48%" alt="Roman villa interior">
+</p>
 
-## Technical Implementation
+## Overview
 
-### 3D Scanning and Artifacts
+Roman Villa VR is an interactive 3D environment inspired by Roman domestic architecture and material culture.
 
-A 3D scanner was used to digitize two real-world busts:
+Users can explore the villa, interact with artifacts, open doors, examine objects, listen to environmental audio, and move between different levels of the building.
 
-- **Hippocrates**
-- **Marcus Agrippa**
+The project was originally developed as a university assignment focused on:
 
-The scanned models were processed, optimized, and integrated into the virtual villa as high-detail digital artifacts.
+- Virtual reality
+- Cultural heritage
+- 3D reconstruction
+- Interaction design
+- Spatial audio
+- Historical visualization
 
-This part of the project involved:
+## Features
 
-- 3D scanning
-- Mesh processing
-- Texture integration
-- Scene placement
-- Performance optimization
+- HTC Vive support through SteamVR
+- Desktop mode without a VR headset
+- Interactive exploration of a Roman villa
+- Grabbable artifacts and household objects
+- Descriptions displayed when selected objects are picked up
+- Interactive doors
+- Movement between the ground and upper floors
+- Positional ambient audio
+- Footstep sounds
+- Dynamic torch and fire effects
+- Skybox environment
+- Separate desktop and VR configurations
 
-### Lighting and Environment
+## Interactive Objects
 
-The environment includes a custom lighting setup designed to create an immersive atmosphere.
+The environment contains several interactive objects and artifacts, including:
 
-#### Atmospheric Lighting
+- Amphorae
+- Roman helmets
+- Gladius
+- Harps
+- Vases
+- Statues
+- Bowls and household objects
+- Decorative objects
+- Food-related objects
 
-The interior uses torch-inspired lighting with warm orange and yellow tones to simulate firelight inside the villa.
+Some artifacts display short historical or contextual descriptions when they are picked up.
 
-#### Custom Sunset Skybox
+## Technologies
 
-The native Vizard sky cubemap was manually modified to create a sunset environment.
+- Python
+- WorldViz Vizard 8
+- Autodesk 3ds Max
+- SteamVR
+- HTC Vive
+- glTF 2.0
+- OpenSceneGraph
+- Virtual reality interaction
+- Spatial audio
+- 3D environment design
 
-The image color channels were adjusted to produce a warmer horizon and provide suitable ambient lighting for the exterior areas of the villa.
-
-### Interactivity
-
-#### Interactive Door Mechanics
-
-The villa includes interactive doors implemented using the Vizard **Grabber** tool.
-
-This allows users to interact with doors while navigating the environment, improving immersion and the sense of presence inside the virtual space.
-
-### Performance Optimization
-
-The **ProOptimizer** tool in Autodesk 3ds Max was used to reduce the complexity of selected architectural meshes.
-
-The optimization process focused on:
-
-- Reducing polygon counts
-- Preserving the visual appearance of the scene
-- Lowering rendering requirements
-- Improving performance on lower-end hardware
-
-## Historical Research
-
-The villa layout was designed based on research into Roman *domus* architecture.
-
-The reconstruction includes spaces commonly associated with Roman domestic buildings, such as:
-
-- The atrium
-- The peristylium
-- Interior living areas
-- Decorative spaces
-- Household and architectural objects
-
-The project combines historical research with virtual reality and 3D development to create an educational and explorable representation of a Roman residence.
-
-## Repository Structure
+## Project Structure
 
 ```text
 RomanVillaVR/
 ├── src/
 │   ├── Roman Villa Final.py
-│   ├── headset_config.py
-│   └── vizconnect_config.py
+│   ├── vizconnect_config.py
+│   └── headset_config.py
 ├── exported/
-│   └── Legacy runtime files from an earlier project version
+│   ├── Roman Villa.gltf
+│   ├── Roman Villa.bin
+│   ├── textures
+│   ├── audio files
+│   └── skybox images
 ├── media/
 │   ├── Atrium.png
 │   ├── Agrippa.png
@@ -98,79 +96,248 @@ RomanVillaVR/
 │   └── Peristylium.png
 ├── docs/
 │   └── ATTRIBUTION.md
-├── .gitignore
 ├── LICENSE
 └── README.md
 ```
 
-- `src/` — latest Python and Vizard source code
-- `exported/` — legacy runtime files from an earlier project version
-- `media/` — selected screenshots of the completed environment
-- `docs/ATTRIBUTION.md` — credits and licensing information for third-party assets
+## Requirements
 
-## Project Assets
+### Desktop Mode
 
-The complete Autodesk 3ds Max project, raw 3D scans, high-resolution textures, and the latest full runtime export are not included in this repository because of their large file size.
+- Windows
+- WorldViz Vizard 8
+- Keyboard and mouse
 
-This repository focuses on:
+### VR Mode
 
-- Source code
-- Technical documentation
-- Selected screenshots
-- The development approach
-- The main VR and 3D implementation details
+- Windows
+- WorldViz Vizard 8
+- SteamVR
+- HTC Vive or a compatible SteamVR headset
+- SteamVR-compatible controllers
 
-Some decorative objects and textures used in the environment were obtained from third-party sources.
+A VR headset is not required to run the project.
 
-Available attribution and licensing information is documented in:
+## Running the Project
 
-`docs/ATTRIBUTION.md`
+Clone the repository:
 
-The repository license applies only to the original work created for this project. Third-party assets remain subject to their respective licenses.
+```bash
+git clone git@github.com:AndreasBelias/RomanVillaVR.git
+```
 
-## Screenshots
+Open WorldViz Vizard and load:
 
-The following images demonstrate the villa's architecture, lighting, interior objects, and scanned artifacts.
+```text
+src/Roman Villa Final.py
+```
 
-| Atrium View | Marcus Agrippa Bust |
-| :---: | :---: |
-| ![Atrium](./media/Atrium.png) | ![Agrippa](./media/Agrippa.png) |
+Run the script from the Vizard IDE.
 
-| Interior Objects | Peristylium |
-| :---: | :---: |
-| ![Items](./media/Items.png) | ![Peristylium](./media/Peristylium.png) |
+The script automatically resolves the runtime assets from the `exported/` directory.
 
-## Built With
+## Desktop Mode
 
-- **Python**
-- **Vizard VR Toolkit**
-- **Autodesk 3ds Max**
-- **3D Scanning Technology**
-- **ProOptimizer**
-- **GLTF and 3D asset workflows**
+Desktop mode is enabled by default.
 
-## Main Contributions
+The project uses:
 
-- Designed and assembled the Roman villa environment
-- Implemented the Vizard VR scene
-- Integrated interactive door mechanics
-- Processed and integrated 3D-scanned busts
-- Configured the lighting and sunset skybox
-- Optimized complex meshes for improved rendering performance
-- Conducted historical research for the villa layout
-- Organized and integrated architectural, decorative, and interactive elements
+```python
+vizconnect.go(require_file(script_path('vizconnect_config.py')))
+movement_tracker = vizconnect.getTracker(
+    'mouse_and_keyboard_walking'
+).getNode3d()
+```
 
-## Limitations
+This allows the environment to run without a VR headset.
 
-- The latest complete runtime export is not included because of its large size
-- The original 3ds Max project is not included
-- Some third-party decorative assets cannot be redistributed independently
-- The repository is intended primarily as a source-code and portfolio presentation of the completed project
+### Desktop Controls
+
+- Keyboard and mouse: movement and camera control
+- Left mouse button: grab or interact
+- `U`: move to the upper floor
+- `J`: return to the ground floor
+- Spacebar: enable the headlight
+
+Exact controls may depend on the active Vizard configuration.
+
+## HTC Vive and SteamVR Mode
+
+The project was originally designed for the HTC Vive using SteamVR.
+
+To run the project in VR:
+
+1. Connect the HTC Vive headset.
+2. Start SteamVR.
+3. Confirm that the headset and controllers are detected.
+4. Open the project in WorldViz Vizard.
+5. Enable the VR configuration in the main script.
+
+Replace the desktop configuration:
+
+```python
+vizconnect.go(require_file(script_path('vizconnect_config.py')))
+movement_tracker = vizconnect.getTracker(
+    'mouse_and_keyboard_walking'
+).getNode3d()
+```
+
+with the headset configuration:
+
+```python
+vizconnect.go(require_file(script_path('headset_config.py')))
+movement_tracker = vizconnect.getTracker(
+    'head_tracker'
+).getNode3d()
+```
+
+The exact tracker names may depend on the current `headset_config.py` configuration and the connected SteamVR hardware.
+
+## Model Loading
+
+The main environment is loaded from:
+
+```text
+exported/Roman Villa.gltf
+```
+
+The glTF file depends on:
+
+```text
+exported/Roman Villa.bin
+```
+
+and on the textures stored in the same `exported/` directory.
+
+The `.gltf`, `.bin`, textures, and referenced media files should remain together.
+
+Do not move the model files independently unless the paths inside the glTF file are also updated.
+
+## Audio
+
+The project includes environmental and interaction audio such as:
+
+```text
+bird sound.wav
+footsteps.wav
+```
+
+Some audio files are treated as optional, allowing the project to continue running even if a sound file is unavailable.
+
+## Skybox
+
+The skybox uses six cubemap textures:
+
+```text
+sunset_posx.jpg
+sunset_negx.jpg
+sunset_posy.jpg
+sunset_negy.jpg
+sunset_posz.jpg
+sunset_negz.jpg
+```
+
+These files must remain inside the `exported/` directory.
+
+## Troubleshooting
+
+### glTF or GLB models fail to load
+
+If Vizard reports:
+
+```text
+Failed to load model
+```
+
+even for a known-valid `.gltf` or `.glb` file, check whether Windows Smart App Control, Windows Security, or another security feature has blocked components of the Vizard installation.
+
+Before modifying the model, test Vizard with a small known-valid GLB file.
+
+In this project, Windows Smart App Control prevented Vizard from loading glTF and GLB models even though the main Vizard application still opened normally.
+
+### Missing textures
+
+Make sure that all textures referenced by `Roman Villa.gltf` remain inside the `exported/` directory.
+
+Moving or renaming texture files may cause the model to load without materials or fail to load correctly.
+
+### Missing audio
+
+Make sure the required `.wav` files remain inside the `exported/` directory.
+
+The project may continue running without some optional audio files.
+
+### SteamVR headset is not detected
+
+Check that:
+
+- SteamVR is running
+- The HTC Vive headset is connected
+- The controllers are detected
+- The correct Vizard headset configuration is enabled
+- The tracker names in `headset_config.py` match the connected hardware
+
+### Large repository size
+
+The repository contains a large binary model file:
+
+```text
+exported/Roman Villa.bin
+```
+
+Cloning the repository may take some time depending on the connection speed.
+
+Frequent commits of large binary exports should be avoided because each version increases the total Git history size.
+
+## Development Notes
+
+The Python code manages:
+
+- Environment loading
+- Desktop and VR configurations
+- HTC Vive and SteamVR interaction
+- Object grabbing
+- Artifact descriptions
+- Door interaction
+- Positional audio
+- Footstep playback
+- Dynamic fire and torch lighting
+- Floor movement
+- Runtime asset paths
+
+The 3D environment was created and prepared in Autodesk 3ds Max and exported as glTF for use in WorldViz Vizard.
+
+## Historical and Educational Context
+
+The project presents a historically inspired Roman domestic environment.
+
+It is intended as an educational and interactive visualization rather than a fully authoritative archaeological reconstruction.
+
+The villa includes architectural spaces, decorative elements, furniture, artifacts, and household objects inspired by Roman material culture.
+
+## Attribution
+
+Some models, textures, images, and audio assets may originate from third-party sources.
+
+See `docs/ATTRIBUTION.md` for available attribution and licensing information.
+
+## License
+
+The source code is licensed under the MIT License.
+
+Third-party models, textures, images, audio files, and other media remain subject to their original licenses.
+
+See `docs/ATTRIBUTION.md` for more information.
 
 ## Author
 
 **Andreas Belias**
 
-Informatics and Telecommunications Student
+Undergraduate student in Informatics and Telecommunications, with interests in:
 
-**Fields:** Virtual Reality, Visual Computing, 3D Modeling, Historical Reconstruction
+- Computer vision
+- Virtual reality
+- Robotics
+- Interactive systems
+- Scientific computing
+- 3D visualization
