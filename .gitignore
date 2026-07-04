@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Large project files
+*.osgb
+*.max
+*.zip
+
+# Temporary files
+*.bak
+*.tmp
+*.autosave
+
+# Windows
+Thumbs.db
+Desktop.ini
