@@ -1,6 +1,6 @@
 # RomanVillaVR
 
-**RomanVillaVR** is a professional virtual reality reconstruction of an ancient Roman *domus*. Developed using the **Vizard** VR toolkit and **3ds Max**, this project integrates historical research with modern 3D asset optimization to create an authentic ancient environment.
+**RomanVillaVR** is an immersive virtual reality reconstruction of an ancient Roman *domus*. Developed using the **Vizard** VR toolkit and **3ds Max**, this project integrates historical research with modern 3D asset optimization to create an authentic ancient environment.
 
 ## Project Overview
 This simulation allows users to explore a historically accurate Roman residence. The project focuses on high-fidelity asset integration, realistic atmospheric lighting, and interactive elements designed for immersive VR exploration.
